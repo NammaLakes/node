@@ -8,5 +8,8 @@ async def run():
         send_to_rabbitmq(data)
         await asyncio.sleep(10)
 
-if __name__ == "__main__":
+def main():
     asyncio.run(run())
+
+if __name__ == "__main__":
+    main()
