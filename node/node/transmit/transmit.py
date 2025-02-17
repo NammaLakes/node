@@ -4,14 +4,15 @@ from node.logger import ops_logger
 from node.settings import CONFIG
 
 def send_to_rabbitmq(data):
+  connection = None
   try:
     ops_logger.info("Attempting to connect to RabbitMQ")
-    connection = pika.BlockingConnection(pika.ConnectionParameters(CONFIG["rabbitmq_host"]))
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=CONFIG["rabbitmq_host"], port=CONFIG["rabbitmq_port"]))
     channel = connection.channel()
     ops_logger.info("Connected to RabbitMQ")
 
     ops_logger.info(f"Declaring queue: {CONFIG['rabbitmq_queue']}")
-    channel.queue_declare(queue=CONFIG["rabbitmq_queue"])
+    channel.queue_declare(queue=CONFIG["rabbitmq_queue"], durable=True)
 
     ops_logger.info(f"Publishing data to queue: {CONFIG['rabbitmq_queue']}")
     channel.basic_publish(
@@ -22,11 +23,11 @@ def send_to_rabbitmq(data):
 
     ops_logger.info(f"Sent data to RabbitMQ: {data}")
   except pika.exceptions.AMQPConnectionError as e:
-    ops_logger.error(f"RabbitMQ connection error: {e}")
+    ops_logger.error(f"RabbitMQ connection error")
   except pika.exceptions.AMQPChannelError as e:
-    ops_logger.error(f"RabbitMQ channel error: {e}")
+    ops_logger.error(f"RabbitMQ channel error")
   except Exception as e:
-    ops_logger.error(f"RabbitMQ error: {e}")
+    ops_logger.error(f"RabbitMQ error")
   finally:
     try:
       connection.close()

@@ -3,5 +3,6 @@ CONFIG = {
     "latitude": 0,
     "longitude": 0,
     "rabbitmq_host": "localhost",
-    "rabbitmq_queue": "sensor_data"
+    "rabbitmq_port": 5672,
+    "rabbitmq_queue": "node_data"
 }
