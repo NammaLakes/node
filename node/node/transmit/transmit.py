@@ -7,7 +7,11 @@ def send_to_rabbitmq(data):
   connection = None
   try:
     ops_logger.info("Attempting to connect to RabbitMQ")
-    connection = pika.BlockingConnection(pika.ConnectionParameters(host=CONFIG["rabbitmq_host"], port=CONFIG["rabbitmq_port"]))
+    if CONFIG["rabbitmq_user"] and CONFIG["rabbitmq_password"]:
+      credentials = pika.PlainCredentials(CONFIG["rabbitmq_user"], CONFIG["rabbitmq_password"])
+    else:
+      credentials = pika.PlainCredentials("guest", "guest")
+    connection = pika.BlockingConnection(pika.ConnectionParameters(host=CONFIG["rabbitmq_host"], port=CONFIG["rabbitmq_port"], credentials=credentials))
     channel = connection.channel()
     ops_logger.info("Connected to RabbitMQ")
 
