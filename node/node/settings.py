@@ -6,5 +6,5 @@ CONFIG = {
     "rabbitmq_port": 5672,
     "rabbitmq_queue": "node_data",
     "rabbitmq_user": "guest",
-    "rabbitmq_password": "guest"
+    "rabbitmq_password": "guest",
 }

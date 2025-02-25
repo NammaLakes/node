@@ -5,6 +5,7 @@ import time
 from node.logger import sensor_logger
 from node.settings import CONFIG
 
+
 # The below function is just for testing and passing random values
 async def read_gpio_sensors():
     # Simulate reading a sensor
@@ -17,11 +18,8 @@ async def read_gpio_sensors():
         # "temperature": temp,
         # "ph": ph
         "timestamp": time.time(),
-        "payload": {
-            "temperature": temp,
-            "ph": ph
-        }
+        "payload": {"temperature": temp, "ph": ph},
     }
-    
+
     sensor_logger.info(json.dumps(data))
     return data
