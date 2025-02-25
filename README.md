@@ -21,13 +21,7 @@ Before running this service, ensure you have:
 
 ## Installation
 
-1. Clone the repository:
-```bash
-git clone [repository-url]
-cd [project-directory]
-```
-
-2. Install dependencies using Poetry:
+1. Install dependencies using Poetry:
 ```bash
 poetry install
 ```
