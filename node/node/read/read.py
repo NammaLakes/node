@@ -9,7 +9,7 @@ from node.settings import CONFIG
 # The below function is just for testing and passing random values
 async def read_gpio_sensors():
     # Simulate reading a sensor
-    temp = random.uniform(20, 30)
+    temp = random.uniform(20, 100)
     ph = random.uniform(6.5, 8.5)
     data = {
         "node_id": CONFIG["node_id"],
