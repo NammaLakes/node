@@ -7,11 +7,13 @@ import shutil
 REPO_OWNER = "NammaLakes"
 REPO_NAME = "node"
 BRANCH = "main"
-LOCAL_REPO_PATH = r"local_repo_path"    
-BACKUP_PATH = ""  #add if this is  a private repo 
+LOCAL_REPO_PATH = r"local_repo_path"
+BACKUP_PATH = ""  # add if this is  a private repo
 
 # GitHub API URL for commits
-GITHUB_API_URL = f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/commits?sha={BRANCH}"
+GITHUB_API_URL = (
+    f"https://api.github.com/repos/{REPO_OWNER}/{REPO_NAME}/commits?sha={BRANCH}"
+)
 
 # Optional: GitHub Personal Access Token
 GITHUB_TOKEN = ""  # keep empty if public repo
@@ -46,13 +48,19 @@ def get_local_commit():
             print(f"Error getting local commit: {result.stderr}")
             return None
     except FileNotFoundError as e:
-        print(f"File not found error: {e}. Ensure the 'git' executable and the repository path exist.")
+        print(
+            f"File not found error: {e}. Ensure the 'git' executable and the repository path exist."
+        )
         return None
     except PermissionError as e:
-        print(f"Permission error: {e}. Check your access rights to the repository path.")
+        print(
+            f"Permission error: {e}. Check your access rights to the repository path."
+        )
         return None
     except subprocess.SubprocessError as e:
-        print(f"Subprocess error: {e}. An issue occurred while running the 'git' command.")
+        print(
+            f"Subprocess error: {e}. An issue occurred while running the 'git' command."
+        )
         return None
 
 
