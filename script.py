@@ -45,8 +45,14 @@ def get_local_commit():
         else:
             print(f"Error getting local commit: {result.stderr}")
             return None
-    except Exception as e:
-        print(f"Exception getting local commit: {e}")
+    except FileNotFoundError as e:
+        print(f"File not found error: {e}. Ensure the 'git' executable and the repository path exist.")
+        return None
+    except PermissionError as e:
+        print(f"Permission error: {e}. Check your access rights to the repository path.")
+        return None
+    except subprocess.SubprocessError as e:
+        print(f"Subprocess error: {e}. An issue occurred while running the 'git' command.")
         return None
 
 
