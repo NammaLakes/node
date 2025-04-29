@@ -8,7 +8,7 @@ from datetime import datetime
 app = FastAPI()
 
 # Configuration
-LOCAL_REPO_BASE = r""   #it shoukd be the path to the folder where the node repos are stored
+LOCAL_REPO_BASE = r""   #it shoukd be the path to the folder where the node id(sensor) are stored
 BRANCH = "main"
 LOG_FILE = os.path.join(LOCAL_REPO_BASE, "update_logs.txt")
 
