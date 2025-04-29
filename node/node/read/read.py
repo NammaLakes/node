@@ -9,16 +9,18 @@ from node.settings import CONFIG
 # The below function is just for testing and passing random values
 async def read_gpio_sensors():
     # Simulate reading a sensor
-    temp = random.uniform(20, 100)
+    temp = random.uniform(20, 40)
     ph = random.uniform(6.5, 8.5)
+    do = random.uniform(4, 10)
     data = {
         "node_id": CONFIG["node_id"],
-        # "latitude": CONFIG["latitude"],
-        # "longitude": CONFIG["longitude"],
-        # "temperature": temp,
-        # "ph": ph
+        "latitude": CONFIG["latitude"],
+        "longitude": CONFIG["longitude"],
+        "temperature": temp,
+        "ph": ph,
+        "dissolved_oxygen": do,
         "timestamp": time.time(),
-        "payload": {"temperature": temp, "ph": ph},
+        "maintenance_required": 0,
     }
 
     sensor_logger.info(json.dumps(data))
